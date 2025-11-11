@@ -5,7 +5,7 @@ class Cuenta():
     lista_cuentas=[]
 
     def __init__(self, titular, cantidad=None):
-        self._titular = Titular(titular)
+        self._titular = titular
         self._cantidad = cantidad
         self._numero_cuenta = f'C-{Cuenta._contador_cuenta}'
         Cuenta._contador_cuenta += 1
@@ -14,9 +14,6 @@ class Cuenta():
     @property
     def cantidad(self):
         return self._cantidad
-    @property
-    def titular(self):
-        return self.titular
     @property
     def numero_cuenta(self):
         return self._numero_cuenta
@@ -42,11 +39,11 @@ class Cuenta():
         return self.cantidad
 
     def mostrar_informacion(self):
-        print(f"--- Información de la cuenta ---")
+        print(f"\n--- Información de la cuenta ---")
         print(f"Número de cuenta: {self.numero_cuenta}")
-        print(f"Titular: {self.titular}")
         print(f"Saldo actual: {self.cantidad:.2f} €")
         print(f'Cuentas asociadas : {len(Cuenta.lista_cuentas)}')
+        print(self._titular.mostrar_informacion())
         print("-------------------------------")
 
 
@@ -84,11 +81,12 @@ class Titular():
               f'Es mayor de edad:{self.es_mayor_de_edad()}\n'
               f'DNI: {self.dni}\n'
               f'Sexo: {self.sexo}\n'
-              f'Direccion: {self.direccion}\n'
-              f'')
+              f'Direccion: {self.direccion}\n')
 
 
-cuenta= Cuenta('Rubén', 100)
+
+ruben = Titular(nombre="Rubén", fecha_nacimiento="1990-03-15", dni="12345678A", sexo="H", direccion="Madrid")
+cuenta= Cuenta(ruben, 100)
 
 cuenta.ingresar(100)
 cuenta.retirar(100)
@@ -96,12 +94,8 @@ cuenta2=Cuenta("Ramon", 500)
 cuenta2.ingresar(500)
 cuenta2.retirar(300)
 
-cuenta.mostrar_informacion()
 
 
-print(f'\n\n')
-
-ruben=Titular()
 ruben.comprobar_sexo("H")
 ruben.comprobar_sexo("M")
-ruben.mostrar_informacion()
+cuenta.mostrar_informacion()
