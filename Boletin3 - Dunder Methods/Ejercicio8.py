@@ -29,6 +29,8 @@ agenda = Agenda()
 agenda.__getitem__("Persona1")
 agenda.__getitem__("Persona2")
 agenda.__setitem__("Persona3", 000000000)
+persona = agenda.__contains__("Persona8")
+print(persona)
 
-
-
+persona = agenda.__contains__("Persona3")
+print(persona)
